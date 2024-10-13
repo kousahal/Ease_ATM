@@ -1,88 +1,36 @@
-#include <iostream>
-using namespace std;
-int next_operation;
+Ease_ATM
+Overview
+Ease_ATM is an ATM simulation program that allows users to perform basic banking transactions including depositing money, withdrawing money, and checking account balance. This project is written in C++ and aims to demonstrate fundamental programming techniques and user interaction.
 
-float account_balance = 0.0;
+Features
+Deposit Funds: Users can deposit money into their account balance.
+Withdraw Funds: Users can withdraw money, with checks in place for insufficient funds.
+Check Balance: Users can view their current account balance.
+User-Friendly Interface: The program provides clear instructions and prompts for user input.
+Requirements
+C++ compiler (e.g., g++, clang++)
+Basic understanding of command line interface
+How to Compile and Run
+Clone the repository or download the source code files.
+Open a terminal or command prompt.
+Navigate to the directory where the source code is saved.
+Compile the code using the following command: g++ -o Ease_ATM Ease_ATM.cpp
+Run the compiled program: ./Ease_ATM
+Usage
+Upon running the program, users will be presented with a menu of options.
+Choose an option by entering the corresponding number and following the prompts.
+The program allows for multiple transactions until the user decides to exit.
+Example Interaction
+Available Options in ATM
 
+Deposit Funds
+Withdraw Funds
+Check Balance
+Select an option: 1 Enter the amount to deposit: 1000 Current balance: Rs. 1000. Thank you for depositing! Would you like another operation? Press 1 for 'yes' or 2 for 'no': Your choice: 2 Thank you for using our ATM service!
 
-void atm_service() {
-    cout << "Available Options in ATM" << endl;
-    cout << "1. Deposit Funds" << endl;
-    cout << "2. Withdraw Funds" << endl;
-    cout << "3. Check Balance" << endl;
-    cout << "\n";
+License
+This project is open-source and available for anyone to use, modify, and distribute.
 
-    int choice;
-    cout << "Select an option: ";
-    cin >> choice;
+Author
+Koushal 
 
-    float withdraw_amt;
-    float deposit_amt;
-
-    switch(choice) {
-
-        case 1:
-            cout << "\nEnter the amount to deposit: ";
-            cin >> deposit_amt;
-            account_balance += deposit_amt;
-
-            cout << "Current balance: Rs. " << account_balance << ". Thank you for depositing!" << endl;
-            cout << "Would you like another operation?\nPress 1 for 'yes' or 2 for 'no':\n" << endl;
-            cout << "Your choice: ";
-            cin >> next_operation;
-
-            if (next_operation == 1) {
-                atm_service();
-            }
-            break;
-
-        case 2:
-            cout << "\nEnter the amount to withdraw: ";
-            cin >> withdraw_amt;
-
-            if (withdraw_amt > account_balance) {
-                cout << "Insufficient balance! Please deposit money first." << endl;
-                cout << "Would you like another operation?\nPress 1 for 'yes' or 2 for 'no':\n" << endl;
-                cout << "Your choice: ";
-                cin >> next_operation;
-
-                if (next_operation == 1) {
-                    atm_service();
-                }
-            } else {
-                account_balance -= withdraw_amt;
-                cout << "You've withdrawn Rs. " << withdraw_amt << ". Remaining balance: Rs. " << account_balance << endl;
-                cout << "Would you like another operation?\nPress 1 for 'yes' or 2 for 'no':\n" << endl;
-                cout << "Your choice: ";
-                cin >> next_operation;
-
-                if (next_operation == 1) {
-                    atm_service();
-                }
-            }
-            break;
-
-     
-        case 3:
-            cout << "Your current balance is: Rs. " << account_balance << endl;
-            cout << "Would you like another operation?\nPress 1 for 'yes' or 2 for 'no':\n" << endl;
-            cout << "Your choice: ";
-            cin >> next_operation;
-
-            if (next_operation == 1) {
-                atm_service();
-            }
-            break;
-
-        default:
-            cout << "Invalid option selected!" << endl;
-            cout << "Returning to main menu...\n" << endl;
-            atm_service();
-    }
-}
-
-int main() {
-    atm_service();
-    cout << "Thank you for using our ATM service!";
-    return 0;
-}
